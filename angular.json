@@ -42,7 +42,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/smart-cart-mvp",
+            "outputPath": "dist/SmartCart-MVP",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
