@@ -1,14 +1,16 @@
-# 🛒 SmartCart_MVP
+# 🛒 SmartCart
 
 SmartCart ist eine moderne Webanwendung zur Einkaufsplanung mit Vorratsverwaltung, Rezeptvorschlägen und Nachhaltigkeitsintegration.  
 Ziel ist es, den Lebensmitteleinkauf smarter zu gestalten, Foodwaste zu vermeiden und regionale Produkte stärker zu berücksichtigen.
 
+Smart einkaufen – Nachhaltig gedacht
+
 ---
 
-## 🚧 Projektstatus
+## 🚧 Projektstatus 🚧
 
 🔨 In Entwicklung (MVP Phase)  
-📦 Geplant für Web & Mobile  
+📦 Geplant für Web & Mobile (MVP nur Web) 
 🐳 Docker-ready  
 🔒 Sicherheits- und API-Vorbereitung inklusive
 
@@ -22,7 +24,7 @@ Um das Projekt lokal auszuführen, benötigst du:
 - [Angular CLI (v16+)](https://angular.io/cli)  
   → Installation: `npm install -g @angular/cli`
 - [Git](https://git-scm.com/)
-- [Docker](https://www.docker.com/) (optional für Deployment)
+- [Docker](https://www.docker.com/)
 
 ---
 
