@@ -30,7 +30,7 @@ Um das Projekt lokal auszuführen, benötigst du:
 
 ```bash
 # Projekt clonen
-git clone https://github.com/DEIN_USERNAME/SmartCart_MVP.git
+git clone https://github.com/CodeChoreographer/SmartCart-MVP
 cd SmartCart_MVP
 
 # Abhängigkeiten installieren
