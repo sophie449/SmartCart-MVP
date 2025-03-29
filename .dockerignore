@@ -1,8 +1,24 @@
+# Node
 node_modules
-dist
+npm-debug.log
+yarn-error.log
+*.log
+
+# Git
 .git
 .gitignore
+
+# Angular
+dist
+.angular
+out-tsc
+
+# Docker
 Dockerfile
 docker-compose.yml
 docker/
-*.log
+
+# IDEs and Editors
+.idea/
+.vscode/
+.history/
