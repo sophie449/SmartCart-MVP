@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Vorräte verwalten</h1>
+
+  <div class="add-item">
+    <input [(ngModel)]="newItem.name" placeholder="Name" />
+    <input [(ngModel)]="newItem.quantity" type="number" placeholder="Menge" />
+    <input [(ngModel)]="newItem.unit" placeholder="Einheit" />
+    <button (click)="addItem()">Hinzufügen</button>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Menge</th>
+      <th>Einheit</th>
+      <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (item of inventory; track item.id) {
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unit }}</td>
+          <td>
+            <button (click)="deleteItem(item.id!)">Löschen</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
