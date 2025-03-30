@@ -1,8 +1,39 @@
+version: '3.8'
+
 services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=smartcart
+      - DB_PORT=3306
+    depends_on:
+      - db
+    container_name: smartcart_backend
+
   frontend:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "4200:80"
+    depends_on:
+      - backend
     container_name: smartcart_frontend
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: smartcart
+    ports:
+      - "3307:3306"  # Externer Port 3307, interner Port 3306
+    volumes:
+      - ./backend/models/smartcart.sql:/docker-entrypoint-initdb.d/smartcart.sql
+    container_name: smartcart_db
