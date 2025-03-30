@@ -1,16 +1,22 @@
 const express = require('express');
 const cors = require('cors');
+const {initDb} = require('./models/db');
 const inventoryRoutes = require('./routes/inventoryRoutes');
-require('dotenv').config();
-
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-app.use(cors());
+app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.json());
 
-app.use('/api/inventory', inventoryRoutes);
+let connection;
 
-app.listen(port, () => {
-  console.log(`✅  Server läuft auf Port ${port}`);
+initDb().then(conn => {
+  connection = conn;
+  app.listen(port, () => {
+    console.log(`✅ Server läuft auf Port ${port}`);
+  });
+}).catch(err => {
+  console.error("❌ Fehler beim Initialisieren der Datenbank:", err);
 });
+
+app.use('/api/inventory', inventoryRoutes);
