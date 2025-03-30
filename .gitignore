@@ -15,7 +15,6 @@ out-tsc/
 
 # Docker
 docker-compose.yml
-Dockerfile
 .dockerignore
 
 # IntelliJ / WebStorm
