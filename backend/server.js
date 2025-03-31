@@ -14,9 +14,12 @@ initDb().then(conn => {
   connection = conn;
   app.listen(port, () => {
     console.log(`✅ Server läuft auf Port ${port}`);
+    console.log(`✅ Backend ist erreichbar unter: http://localhost:${port}`);
+    console.log(`✅ Applikation ist erreichbar unter: http://localhost:4200`);
   });
 }).catch(err => {
   console.error("❌ Fehler beim Initialisieren der Datenbank:", err);
 });
 
 app.use('/api/inventory', inventoryRoutes);
+
