@@ -17,42 +17,43 @@ Smart einkaufen – Nachhaltig gedacht
 
 ---
 
-## 🚀 Anwendung mit Docker starten 
+🚀 Anwendung mit Docker starten (Schritt-für-Schritt Anleitung)
 
-### 🔑 Voraussetzungen
-- Docker
-- Docker Compose
-- Ein laufender MySQL Server
-- Eine Datenbank mit dem Namen `smartcart`
+🔑 Voraussetzungen
 
-### 🔨 1. .env Datei erstellen
-Erstelle im Ordner `backend/` eine Datei mit dem Namen `.env` und folgendem Inhalt:
+Docker
 
-```bash
+Docker Compose
+
+Ein laufender MySQL Server
+
+Eine Datenbank mit dem Namen smartcart
+
+🔨 1. .env Datei erstellen (Pflicht für Backend!)
+
+Erstelle im Ordner backend/ eine Datei mit dem Namen .env und folgendem Inhalt:
+
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=DEIN_DATENBANK_PASSWORT
 DB_NAME=smartcart
 DB_PORT=3306
 
----
+💡 Hinweis: Ersetze DEIN_DATENBANK_PASSWORT mit dem Passwort deines MySQL-Servers.
 
-💡 **Hinweis:** Ersetze `DEIN_DATENBANK_PASSWORT` mit dem Passwort deines MySQL-Servers.
+🔨 2. Docker starten
 
-### 🔨 2. Docker starten
-Im Hauptverzeichnis des Projekts (`SmartCart-MVP`) folgenden Befehl ausführen:
+Im Hauptverzeichnis des Projekts (SmartCart-MVP) folgenden Befehl ausführen:
 
-```bash
 docker-compose up --build
----
 
 Dieser Befehl baut sowohl das Frontend als auch das Backend und startet beide Container.
 
-### 🔥 3. Anwendung aufrufen
-- **Frontend:** [http://localhost:4200](http://localhost:4200)
-- **Backend:** [http://localhost:3000](http://localhost:3000)
+🔥 3. Anwendung aufrufen
 
----
+Frontend: http://localhost:4200
+
+Backend: http://localhost:3000
 
 ## 📧 Kontakt
 Falls du Fragen hast, melde dich gerne!
