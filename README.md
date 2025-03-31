@@ -35,6 +35,7 @@ DB_PASSWORD=DEIN_DATENBANK_PASSWORT
 DB_NAME=smartcart
 DB_PORT=3306
 
+---
 
 💡 **Hinweis:** Ersetze `DEIN_DATENBANK_PASSWORT` mit dem Passwort deines MySQL-Servers.
 
@@ -43,6 +44,7 @@ Im Hauptverzeichnis des Projekts (`SmartCart-MVP`) folgenden Befehl ausführen:
 
 ```bash
 docker-compose up --build
+---
 
 Dieser Befehl baut sowohl das Frontend als auch das Backend und startet beide Container.
 
