@@ -17,7 +17,7 @@ Smart einkaufen – Nachhaltig gedacht
 ---
 # 🚀 Anwendung mit Docker starten
 
-##🔑 Voraussetzungen
+## 🔑 Voraussetzungen
 
 Docker
 Docker Compose
