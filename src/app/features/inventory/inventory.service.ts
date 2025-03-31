@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface InventoryItem {
@@ -15,18 +15,21 @@ export interface InventoryItem {
 export class InventoryService {
   private apiUrl = 'http://localhost:3000/api/inventory';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getInventory(): Observable<InventoryItem[]> {
     return this.http.get<InventoryItem[]>(this.apiUrl);
   }
 
   addItem(item: InventoryItem): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.apiUrl, item, { headers });
+    return this.http.post(this.apiUrl, item);
   }
 
   deleteItem(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  updateItem(id: number, item: InventoryItem): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, item);
   }
 }

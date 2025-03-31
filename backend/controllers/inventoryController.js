@@ -42,3 +42,25 @@ exports.deleteItem = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.updateItem = async (req, res) => {
+  const { id } = req.params;
+  const { name, quantity, unit } = req.body;
+
+  try {
+    const connection = getConnection();
+    const [results] = await connection.query(
+      "UPDATE inventory SET name = ?, quantity = ?, unit = ? WHERE id = ?",
+      [name, quantity, unit, id]
+    );
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: `Artikel mit ID ${id} nicht gefunden.` });
+    }
+
+    res.json({ message: "Artikel erfolgreich aktualisiert" });
+  } catch (err) {
+    console.error("❌ Fehler beim Aktualisieren:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+};
