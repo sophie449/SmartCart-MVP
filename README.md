@@ -14,29 +14,44 @@ Smart einkaufen – Nachhaltig gedacht
 🐳 Docker-ready  
 🔒 Sicherheits- und API-Vorbereitung inklusive
 
----
-
-## 📋 Voraussetzungen
-
-Um das Projekt lokal auszuführen, benötigst du:
-
-- [Node.js (v18+)](https://nodejs.org/)
-- [Angular CLI (v16+)](https://angular.io/cli)  
-  → Installation: `npm install -g @angular/cli`
-- [Git](https://git-scm.com/)
-- [Docker](https://www.docker.com/)
 
 ---
 
-## 🚀 Projekt starten (lokal)
+## 🚀 Anwendung mit Docker starten 
+
+### 🔑 Voraussetzungen
+- Docker
+- Docker Compose
+- Ein laufender MySQL Server
+- Eine Datenbank mit dem Namen `smartcart`
+
+### 🔨 1. .env Datei erstellen
+Erstelle im Ordner `backend/` eine Datei mit dem Namen `.env` und folgendem Inhalt:
 
 ```bash
-# Projekt clonen
-git clone https://github.com/CodeChoreographer/SmartCart-MVP
-cd SmartCart_MVP
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=DEIN_DATENBANK_PASSWORT
+DB_NAME=smartcart
+DB_PORT=3306
 
-# Abhängigkeiten installieren
-npm install
 
-# Angular Dev Server starten
-ng serve
+💡 **Hinweis:** Ersetze `DEIN_DATENBANK_PASSWORT` mit dem Passwort deines MySQL-Servers.
+
+### 🔨 2. Docker starten
+Im Hauptverzeichnis des Projekts (`SmartCart-MVP`) folgenden Befehl ausführen:
+
+```bash
+docker-compose up --build
+
+Dieser Befehl baut sowohl das Frontend als auch das Backend und startet beide Container.
+
+### 🔥 3. Anwendung aufrufen
+- **Frontend:** [http://localhost:4200](http://localhost:4200)
+- **Backend:** [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📧 Kontakt
+Falls du Fragen hast, melde dich gerne!
+
