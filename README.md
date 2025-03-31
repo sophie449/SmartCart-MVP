@@ -10,7 +10,7 @@ Smart einkaufen – Nachhaltig gedacht
 ## 🚧 Projektstatus 🚧
 
 🔨 In Entwicklung (MVP Phase)  
-📦 Geplant für Web & Mobile (MVP nur Web) 
+📦 Geplant für Web & Mobile (MVP nur Web)
 🐳 Docker-ready  
 🔒 Sicherheits- und API-Vorbereitung inklusive
 
@@ -36,7 +36,7 @@ DB_PORT=3306
 ```
 💡 Hinweis: Ersetze DEIN_DATENBANK_PASSWORT mit dem Passwort deines MySQL-Servers.
 
-## 🔨 2. Docker starten
+## 🐳 2. Docker starten
 
 Im Hauptverzeichnis des Projekts (SmartCart-MVP) folgenden Befehl ausführen:
 ```bash
