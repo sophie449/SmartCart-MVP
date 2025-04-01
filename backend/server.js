@@ -2,11 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const {initDb} = require('./models/db');
 const inventoryRoutes = require('./routes/inventoryRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 const app = express();
 const port = 3000;
 
 app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.json());
+app.use('/api/recipes', recipeRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 let connection;
 
@@ -21,5 +24,4 @@ initDb().then(conn => {
   console.error("❌ Fehler beim Initialisieren der Datenbank:", err);
 });
 
-app.use('/api/inventory', inventoryRoutes);
 
