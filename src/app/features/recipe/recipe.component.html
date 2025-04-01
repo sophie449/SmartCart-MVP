@@ -1,0 +1,23 @@
+<div class="recipe-generator">
+  <h2>Rezeptgenerator</h2>
+
+  <div>
+    <label>Zutaten auswählen:</label>
+    <input type="text" (input)="updateIngredients($event)" placeholder="Zutaten mit Komma trennen z.B. Tomaten, Mozzarella">
+  </div>
+
+  <div>
+    <label>Filter:</label>
+    <select [(ngModel)]="selectedFilter">
+      <option value="Vegan">Vegan</option>
+      <option value="Vegetarisch">Vegetarisch</option>
+      <option value="Keine Einschränkung">Keine Einschränkung</option>
+    </select>
+  </div>
+
+  <button (click)="generateRecipe()">Rezept generieren</button>
+
+  <div *ngIf="generatedRecipe" class="recipe-output">
+    <markdown [data]="generatedRecipe"></markdown>
+  </div>
+</div>

@@ -16,6 +16,13 @@ export const appRoutes: Routes = [
   },
 
   {
+    path: 'recipe',
+    loadComponent: () =>
+      import('./features/recipe/recipe.component').then(m => m.RecipeComponent)
+  },
+
+
+  {
     path: '**',
     loadComponent: () =>
       import('./features/error-page/error-page.component').then((m) => m.ErrorPageComponent),
