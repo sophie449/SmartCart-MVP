@@ -1,5 +1,5 @@
 const { getConnection } = require('../models/db');
-const axios = require('axios'); // Pollinations benötigt axios für HTTP Requests
+const axios = require('axios');
 
 exports.generateRecipe = async (req, res) => {
   const { ingredients, filter } = req.body;

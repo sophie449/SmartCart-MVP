@@ -6,7 +6,7 @@ const recipeRoutes = require('./routes/recipeRoutes');
 const app = express();
 const port = 3000;
 
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/inventory', inventoryRoutes);

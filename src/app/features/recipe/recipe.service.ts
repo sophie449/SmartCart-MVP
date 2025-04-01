@@ -7,8 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class RecipeService {
   constructor(private http: HttpClient) {}
+  private inventoryUrl = 'http://localhost:3000/api/inventory';
+
 
   generateRecipe(ingredients: string[], filter: string): Observable<any> {
     return this.http.post('/api/recipes/generate', { ingredients, filter });
   }
+  getInventory(): Observable<any[]> {
+    return this.http.get<any[]>(this.inventoryUrl);
+  }
 }
+
+
