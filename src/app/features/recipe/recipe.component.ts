@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { RecipeService } from './recipe.service';
+import {RouterLink} from '@angular/router';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss'],
+  standalone: true,
   imports: [
     FormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    RouterLink,
+    MatButton
   ]
 })
 export class RecipeComponent implements OnInit {
@@ -19,6 +24,8 @@ export class RecipeComponent implements OnInit {
   selectedIngredients: string[] = [];
   selectedFilter: string = 'Keine Einschränkung';
   generatedRecipe: string = '';
+  isLoading: boolean = false;
+  dropdownOpen: boolean = false;
 
   constructor(private http: HttpClient, private recipeService: RecipeService) {}
 
@@ -37,15 +44,21 @@ export class RecipeComponent implements OnInit {
   }
 
   generateRecipe() {
+    this.isLoading = true;
+    this.generatedRecipe = '';
     this.http.post<any>('http://localhost:3000/api/recipes/generate', {
       ingredients: this.selectedIngredients,
       filter: this.selectedFilter
     }).subscribe(
       response => {
         this.generatedRecipe = response.recipe;
+        this.isLoading = false;
         console.log('✅ Rezept erfolgreich geladen:', this.generatedRecipe);
       },
-      error => console.error('❌ Fehler beim Laden des Rezepts:', error)
+      error => {
+        console.error('❌ Fehler beim Laden des Rezepts:', error);
+        this.isLoading = false;
+      }
     );
   }
 
@@ -55,5 +68,14 @@ export class RecipeComponent implements OnInit {
     } else {
       this.selectedIngredients.push(ingredient);
     }
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  selectFilter(filter: string) {
+    this.selectedFilter = filter;
+    this.dropdownOpen = true;
   }
 }

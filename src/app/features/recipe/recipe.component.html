@@ -1,28 +1,41 @@
-<div class="recipe-generator">
-  <h2>Rezeptgenerator</h2>
+<div class="container">
+  <div class="content-wrapper">
 
-  <div>
-    <label>Zutaten auswählen:</label>
-    <div>
-      <label *ngFor="let ingredient of availableIngredients">
-        <input type="checkbox" [value]="ingredient" (change)="toggleIngredientSelection(ingredient)">
-        {{ ingredient }}
-      </label>
+    <div class="ingredients-panel">
+      <h2>Zutaten Auswahl</h2>
+
+      <div class="ingredients-box">
+        <h3>Zutaten auswählen:</h3>
+        <div class="ingredients-list">
+          <label *ngFor="let ingredient of availableIngredients">
+            <input type="checkbox" [value]="ingredient" (change)="toggleIngredientSelection(ingredient)">
+            {{ ingredient }}
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-box">
+        <label>Filter:</label>
+        <div class="custom-dropdown" (click)="toggleDropdown()">
+          <div class="dropdown-trigger">{{ selectedFilter }}</div>
+          <div class="dropdown-menu" *ngIf="dropdownOpen">
+            <div class="dropdown-item" (click)="selectFilter('Vegan')">Vegan</div>
+            <div class="dropdown-item" (click)="selectFilter('Vegetarisch')">Vegetarisch</div>
+            <div class="dropdown-item" (click)="selectFilter('Keine Einschränkung')">Keine Einschränkung</div>
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="generateRecipe()">Rezept generieren</button>
+      <button mat-raised-button color="primary" routerLink="/inventory">Zurück zur Vorratsverwaltung</button>
     </div>
-  </div>
 
-  <div>
-    <label>Filter:</label>
-    <select [(ngModel)]="selectedFilter">
-      <option value="Vegan">Vegan</option>
-      <option value="Vegetarisch">Vegetarisch</option>
-      <option value="Keine Einschränkung">Keine Einschränkung</option>
-    </select>
-  </div>
-
-  <button (click)="generateRecipe()">Rezept generieren</button>
-
-  <div *ngIf="generatedRecipe" class="recipe-output">
-    <pre>{{ generatedRecipe }}</pre>
+    <div class="recipe-panel">
+      <h2>Generiertes Rezept</h2>
+      <div *ngIf="isLoading" class="loading-spinner"></div>
+      <div *ngIf="generatedRecipe && !isLoading" class="recipe-output-box">
+        <div class="recipe-content">{{ generatedRecipe }}</div>
+      </div>
+    </div>
   </div>
 </div>

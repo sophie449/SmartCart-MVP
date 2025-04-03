@@ -1,76 +1,193 @@
+$primary-color: #00c37a;
+$secondary-color: #1f1f1f;
+$background-color: #1f1f1f;
+$hover-color: #009b5a;
+$text-color: white;
+$panel-bg-color: #2a2a2a;
+
 .container {
+  display: flex;
+  justify-content: center;
   padding: 20px;
+  background-color: $background-color;
 }
-
-.recipe-generator {
-  padding: 20px;
-  background-color: #1f1f1f;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-}
-
-.recipe-generator h2 {
-  color: #00c37a;
-  text-align: center;
-}
-
-.recipe-generator div {
-  margin-bottom: 20px;
-}
-
-input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-select {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-}
-
 button {
-  padding: 10px 20px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
   background-color: #00c37a;
-  border: none;
-  border-radius: 5px;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
 
   &:hover {
     background-color: #009b5a;
   }
 }
 
-.recipe-output {
-  background-color: #1f1f1f;
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  transition: all 0.3s ease;
+}
+
+.ingredients-panel {
+  flex: 1;
+  background-color: $secondary-color;
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid #00c37a;
-  margin-top: 20px;
+  border: 1px solid $primary-color;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.ingredients-box {
+  background-color: $panel-bg-color;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid $primary-color;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+h2, h3, label {
+  color: $primary-color;
+}
+
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  background-color: $panel-bg-color;
+  padding: 10px;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  color: $text-color;
+  transition: all 0.3s ease;
+}
+
+.dropdown-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: $secondary-color;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  margin-top: 5px;
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 10px;
+  color: $text-color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+.recipe-panel {
+  flex: 2;
+  background-color: $secondary-color;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid $primary-color;
+  overflow-y: auto;
+  max-height: 700px;
+  transition: all 0.3s ease;
+}
+
+.recipe-output-box {
+  background-color: $panel-bg-color;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid $primary-color;
   color: white;
   white-space: pre-wrap;
-  font-family: 'Roboto', sans-serif;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.loading-spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid $primary-color;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
 }
 
-th, td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  color: white;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-th {
-  background-color: #00c37a;
-  color: white;
+@media (max-width: 1000px) {
+  .content-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ingredients-panel, .recipe-panel {
+    width: 100%;
+    max-width: 800px;
+  }
 }
 
-tr:nth-child(even) {
-  background-color: #2a2a2a;
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .ingredients-panel, .recipe-panel {
+    padding: 15px;
+  }
+
+  button {
+    padding: 8px 15px;
+  }
+
+  .ingredients-list {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 5px;
+    gap: 10px;
+  }
+
+  .ingredients-panel, .recipe-panel {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .ingredients-list {
+    max-height: 150px;
+  }
 }
