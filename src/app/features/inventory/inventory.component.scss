@@ -6,9 +6,11 @@
   margin-bottom: 20px;
 }
 
+
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 th, td {
@@ -17,16 +19,27 @@ th, td {
   border-bottom: 1px solid #ddd;
 }
 
+th {
+  background-color: #2a2a2a;
+  color: #00c37a;
+}
+
+tr:hover {
+  background-color: rgba(0, 195, 122, 0.1);
+}
+
 button {
-  padding: 5px 10px;
-  background-color: #00c37a;
-  border: none;
-  border-radius: 5px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: white;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
 
   &:hover {
     background-color: #009b5a;
   }
 }
+
+
