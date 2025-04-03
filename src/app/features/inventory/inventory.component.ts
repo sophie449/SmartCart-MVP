@@ -2,14 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryService, InventoryItem } from './inventory.service';
 import {FormsModule} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
+import {RouterLink} from '@angular/router';
+import {MatButton} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
   imports: [
     FormsModule,
-    NgForOf,
-    NgIf
+    NgIf,
+    RouterLink,
+    MatButton,
+    MatTableModule,
+    NgForOf
   ],
   styleUrls: ['./inventory.component.scss']
 })

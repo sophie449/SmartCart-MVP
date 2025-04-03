@@ -1,26 +1,37 @@
-<div *ngIf="editItem; else addItemForm">
-  <input [(ngModel)]="editItem.name" placeholder="Name">
-  <input [(ngModel)]="editItem.quantity" placeholder="Menge" type="number">
-  <input [(ngModel)]="editItem.unit" placeholder="Einheit">
-  <button (click)="saveEdit()">Speichern</button>
-  <button (click)="cancelEdit()">Abbrechen</button>
+<div class="container">
+  <div *ngIf="editItem; else addItemForm">
+    <input [(ngModel)]="editItem.name" placeholder="Name">
+    <input [(ngModel)]="editItem.quantity" type="number" placeholder="Menge">
+    <input [(ngModel)]="editItem.unit" placeholder="Einheit">
+    <button mat-raised-button color="primary" (click)="saveEdit()">Speichern</button>
+    <button mat-raised-button color="warn" (click)="cancelEdit()">Abbrechen</button>
+
+  </div>
+
+  <ng-template #addItemForm>
+    <input [(ngModel)]="newItem.name" placeholder="Name">
+    <input [(ngModel)]="newItem.quantity" type="number" placeholder="Menge">
+    <input [(ngModel)]="newItem.unit" placeholder="Einheit">
+
+    <button mat-raised-button color="accent" (click)="addItem()">Hinzufügen</button>
+  </ng-template>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Menge</th>
+      <th>Einheit</th>
+      <th>Aktionen</th>
+    </tr>
+    <tr *ngFor="let item of inventory">
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.unit }}</td>
+      <td>
+        <button mat-raised-button color="accent" (click)="startEdit(item)">Bearbeiten</button>
+        <button mat-raised-button color="warn" (click)="deleteItem(item.id!)">Löschen</button>
+      </td>
+    </tr>
+  </table>
+  <button mat-raised-button color="primary" routerLink="/recipe">Zur Rezeptgenerierung</button>
 </div>
-
-<ng-template #addItemForm>
-  <input [(ngModel)]="newItem.name" placeholder="Name">
-  <input [(ngModel)]="newItem.quantity" placeholder="Menge" type="number">
-  <input [(ngModel)]="newItem.unit" placeholder="Einheit">
-  <button (click)="addItem()">Hinzufügen</button>
-</ng-template>
-
-<table>
-  <tr *ngFor="let item of inventory">
-    <td>{{ item.name }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>{{ item.unit }}</td>
-    <td>
-      <button (click)="startEdit(item)">Bearbeiten</button>
-      <button (click)="deleteItem(item.id!)">Löschen</button>
-    </td>
-  </tr>
-</table>
