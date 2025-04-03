@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
 import { RecipeService } from './recipe.service';
-import {RouterLink} from '@angular/router';
-import {MatButton} from '@angular/material/button';
+import { Router, RouterLink } from '@angular/router';
+import { MatButton } from '@angular/material/button';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-recipe',
@@ -27,7 +28,12 @@ export class RecipeComponent implements OnInit {
   isLoading: boolean = false;
   dropdownOpen: boolean = false;
 
-  constructor(private http: HttpClient, private recipeService: RecipeService) {}
+  constructor(
+    private http: HttpClient,
+    private recipeService: RecipeService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadInventory();
@@ -77,5 +83,10 @@ export class RecipeComponent implements OnInit {
   selectFilter(filter: string) {
     this.selectedFilter = filter;
     this.dropdownOpen = true;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
