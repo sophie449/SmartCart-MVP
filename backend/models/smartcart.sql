@@ -8,7 +8,14 @@ CREATE TABLE IF NOT EXISTS inventory (
                                        unit VARCHAR(50) NOT NULL
 );
 
-INSERT INTO inventory (name, quantity, unit) VALUES
-                                               ('Tomaten', 10, 'Stück'),
-                                               ('Mozzarella', 2, 'Packungen'),
-                                               ('Avocado', 5, 'Stück');
+CREATE TABLE IF NOT EXISTS users (
+                                   id INT PRIMARY KEY AUTO_INCREMENT,
+                                   firstName VARCHAR(255) NOT NULL,
+                                   lastName VARCHAR(255) NOT NULL,
+                                   email VARCHAR(255) UNIQUE NOT NULL,
+                                   gender VARCHAR(50) NOT NULL,
+                                   password VARCHAR(255) NOT NULL,
+                                   isAdmin BOOLEAN DEFAULT FALSE
+);
+
+

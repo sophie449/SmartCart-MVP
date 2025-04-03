@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService, InventoryItem } from './inventory.service';
-import {FormsModule} from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
-import {RouterLink} from '@angular/router';
-import {MatButton} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { NgForOf, NgIf } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { MatButton } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-inventory',
@@ -24,17 +25,31 @@ export class InventoryComponent implements OnInit {
   inventory: InventoryItem[] = [];
   newItem: InventoryItem = { name: '', quantity: 0, unit: '' };
   editItem: InventoryItem | null = null;
+  isAdmin: boolean = false;
 
-  constructor(private inventoryService: InventoryService) {}
+  constructor(
+    private inventoryService: InventoryService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadInventory();
+    this.checkAdminStatus();
   }
 
   loadInventory(): void {
     this.inventoryService.getInventory().subscribe(data => {
       this.inventory = data;
     });
+  }
+
+  checkAdminStatus(): void {
+    const token = this.authService.getToken();
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      this.isAdmin = payload.isAdmin || false;
+    }
   }
 
   addItem(): void {
@@ -67,5 +82,10 @@ export class InventoryComponent implements OnInit {
 
   cancelEdit(): void {
     this.editItem = null;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

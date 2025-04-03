@@ -1,0 +1,37 @@
+<div class="register-container">
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Vorname</mat-label>
+      <input matInput [(ngModel)]="formData.firstName" name="firstName" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nachname</mat-label>
+      <input matInput [(ngModel)]="formData.lastName" name="lastName" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>E-Mail</mat-label>
+      <input matInput type="email" [(ngModel)]="formData.email" name="email" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Geschlecht</mat-label>
+      <mat-select [(ngModel)]="formData.gender" name="gender" required>
+        <mat-option value="Männlich">Männlich</mat-option>
+        <mat-option value="Weiblich">Weiblich</mat-option>
+        <mat-option value="Divers">Divers</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Passwort</mat-label>
+      <input matInput type="password" [(ngModel)]="formData.password" name="password" required />
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    <button mat-raised-button color="primary" type="submit">Registrieren</button>
+    <button mat-raised-button color="primary" (click)="goBack()" class="back-button">Zurück zum Login</button>
+  </form>
+</div>

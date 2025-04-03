@@ -3,6 +3,8 @@ const cors = require('cors');
 const {initDb} = require('./models/db');
 const inventoryRoutes = require('./routes/inventoryRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
+const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 const port = 3000;
 
@@ -10,6 +12,9 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/inventory', inventoryRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+
 
 let connection;
 

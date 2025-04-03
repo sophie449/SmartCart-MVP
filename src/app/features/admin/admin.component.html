@@ -1,0 +1,33 @@
+<div class="admin-container">
+  <h2>Benutzerverwaltung</h2>
+
+  <button mat-raised-button color="primary" (click)="goBack()" class="back-button">Zurück zum Inventory</button>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>E-Mail</th>
+      <th>Admin</th>
+      <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.isAdmin ? 'Ja' : 'Nein' }}</td>
+      <td>
+        <button mat-raised-button color="warn" (click)="confirmDelete(user.id)">Löschen</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
