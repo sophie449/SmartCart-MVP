@@ -12,6 +12,8 @@ services:
     depends_on:
       - db
     container_name: smartcart_backend
+    networks:
+      - smartcart-network
 
   frontend:
     build:
@@ -22,6 +24,8 @@ services:
     depends_on:
       - backend
     container_name: smartcart_frontend
+    networks:
+      - smartcart-network
 
   db:
     image: mysql:latest
@@ -29,7 +33,14 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: smartcart
     ports:
-      - "3307:3306"  # Externer Port 3307, interner Port 3306
+      - "3307:3306"
     volumes:
       - ./backend/models/smartcart.sql:/docker-entrypoint-initdb.d/smartcart.sql
     container_name: smartcart_db
+    networks:
+      - smartcart-network
+
+networks:
+  smartcart-network:
+    driver: bridge
+
